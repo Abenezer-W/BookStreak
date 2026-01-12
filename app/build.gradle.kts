@@ -57,6 +57,9 @@ android {
 }
 
 dependencies {
+    // pass word strength checker
+    implementation("com.nulab-inc:zxcvbn:1.9.0")
+
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
     testImplementation("androidx.compose.ui:ui-test-junit4")

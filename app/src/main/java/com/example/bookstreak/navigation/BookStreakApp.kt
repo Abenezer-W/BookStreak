@@ -38,7 +38,7 @@ fun BookStreakApp(modifier: Modifier = Modifier, authViewModel: AuthViewModel) {
         modifier = modifier
     ) {
         composable(route = BookStreakScreens.SignUp.name) {
-            SignUpScreen()
+            SignUpScreen(vm = authViewModel)
         }
     }
 }
