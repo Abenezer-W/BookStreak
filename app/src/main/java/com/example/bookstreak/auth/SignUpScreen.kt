@@ -32,6 +32,7 @@ import com.example.bookstreak.auth.domain.AuthData
 import com.example.bookstreak.auth.domain.AuthState
 import com.example.bookstreak.auth.ui.CreateAccountBtn
 import com.example.bookstreak.auth.ui.CreateAccountBtnPreview
+import com.example.bookstreak.auth.ui.OtherOptionsSection
 import com.example.bookstreak.auth.ui.SignUpForm
 import com.example.bookstreak.theme.BookStreakTheme
 
@@ -85,7 +86,9 @@ fun SignUpScreen(modifier: Modifier = Modifier, vm: AuthViewModel) {
             modifier = Modifier.fillMaxWidth()
         )
 
-        Ro
+        OtherOptionsSection()
+
+
     }
 
 }
