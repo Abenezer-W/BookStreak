@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.bookstreak.auth.AuthViewModel
-import com.example.bookstreak.auth.SignUpScreen
+import com.example.bookstreak.auth.ui.SignUpScreen
 
 enum class BookStreakScreens {
     SignUp,

@@ -1,14 +1,7 @@
-package com.example.bookstreak.auth
+package com.example.bookstreak.auth.ui
 
-import android.R
-import android.util.Log
-import android.widget.Space
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,19 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.bookstreak.auth.domain.AuthData
-import com.example.bookstreak.auth.domain.AuthState
-import com.example.bookstreak.auth.ui.CreateAccountBtn
-import com.example.bookstreak.auth.ui.CreateAccountBtnPreview
-import com.example.bookstreak.auth.ui.OtherOptionsSection
-import com.example.bookstreak.auth.ui.SignUpForm
+import com.example.bookstreak.auth.AuthViewModel
+import com.example.bookstreak.auth.domain.AuthFormData
 import com.example.bookstreak.theme.BookStreakTheme
 
 
@@ -41,15 +29,7 @@ import com.example.bookstreak.theme.BookStreakTheme
 fun SignUpScreen(modifier: Modifier = Modifier, vm: AuthViewModel) {
     // Header text
     val authState by vm.authState.collectAsStateWithLifecycle()
-    val authData: AuthData = when (val state = authState) {
-        is AuthState.Failed -> state.authData
-        is AuthState.Pending -> state.authData
-        is AuthState.Success -> {
-            // navigate away from this page
-            return
-        }
-    }
-
+    val formData by vm.authFormData.collectAsStateWithLifecycle()
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp),
         modifier = modifier
@@ -72,9 +52,10 @@ fun SignUpScreen(modifier: Modifier = Modifier, vm: AuthViewModel) {
         // TODO: add terms of service checkbox
 
         SignUpForm(
-            authState = authData, onFullNameChanged = vm::nameChanged,
+            formData = formData,
+            onFullNameChanged = vm::nameChanged,
             onEmailChange = vm::emailChanged,
-            onPasswordChange = vm::nameChanged,
+            onPasswordChange = vm::passChanged,
         )
         Row(verticalAlignment = Alignment.CenterVertically ){
             Checkbox(checked = false, onCheckedChange = {it})
@@ -87,7 +68,6 @@ fun SignUpScreen(modifier: Modifier = Modifier, vm: AuthViewModel) {
         )
 
         OtherOptionsSection()
-
 
     }
 
