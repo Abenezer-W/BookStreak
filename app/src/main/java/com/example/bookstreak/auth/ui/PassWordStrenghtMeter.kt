@@ -15,10 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.bookstreak.auth.domain.PasswordStrength
 import com.example.bookstreak.theme.BookStreakTheme
 
 @Composable
-fun PasswordStrengthMeter(strength: Int, label: String, modifier: Modifier = Modifier) {
+fun PasswordStrengthMeter(passwordStrength: PasswordStrength, modifier: Modifier = Modifier) {
     Column {
         Row(
             horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -29,7 +30,7 @@ fun PasswordStrengthMeter(strength: Int, label: String, modifier: Modifier = Mod
                         .weight(1f)
                         .height(4.dp)
                         .background(
-                            color = if (idx < strength) MaterialTheme.colorScheme.inversePrimary else MaterialTheme.colorScheme.surfaceContainer,
+                            color = if (idx < passwordStrength.value) MaterialTheme.colorScheme.inversePrimary else MaterialTheme.colorScheme.surfaceContainer,
                             shape = RoundedCornerShape(2.dp)
                         )
                 )
@@ -37,7 +38,7 @@ fun PasswordStrengthMeter(strength: Int, label: String, modifier: Modifier = Mod
         }
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = label,
+            text = passwordStrength.label,
             style = MaterialTheme.typography.bodySmall
         )
     }
@@ -48,6 +49,6 @@ fun PasswordStrengthMeter(strength: Int, label: String, modifier: Modifier = Mod
 @Composable
 fun PreviewPasswordStrengthMeter(){
     BookStreakTheme {
-        PasswordStrengthMeter(2, "Strong")
+        PasswordStrengthMeter(PasswordStrength.Weak)
     }
 }

@@ -100,7 +100,7 @@ fun SignUpForm(
                     .fillMaxWidth()
             )
         }
-        PasswordStrengthMeter(3, "strong")
+        PasswordStrengthMeter(formData.passwordStrength)
     }
 }
 
