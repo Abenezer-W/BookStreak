@@ -1,6 +1,8 @@
 package com.example.bookstreak.navigation
 
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -12,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -68,24 +71,25 @@ fun BookStreakApp(modifier: Modifier = Modifier) {
     }
 }
 
-
 @Composable
 fun BottomBarButtons(
     onFocusScreen: BookStreakScreens,
     modifier: Modifier = Modifier,
     onButtonClick: (BookStreakScreens) -> Unit = {},
 ) {
-    NavigationBar {
+    NavigationBar(        modifier = Modifier.height(500.dp)
+    ) {
         NavigationBarItem(
             selected = BookStreakScreens.DashBoard == onFocusScreen,
             onClick = { onButtonClick(BookStreakScreens.DashBoard) },
             icon = {
                 Icon(
                     painter = painterResource(R.drawable.home),
-                    contentDescription = "Home"
+                    contentDescription = "Home",
+                    modifier = Modifier.size(32.dp) // Increase the size of the icon
                 )
             },
-            label = { Text("home") }
+            label = { Text("home") },
         )
 
         NavigationBarItem(
@@ -94,11 +98,13 @@ fun BottomBarButtons(
             icon = {
                 Icon(
                     painter = painterResource(R.drawable.library),
-                    contentDescription = "Library"
+                    contentDescription = "Library",
+                    modifier = Modifier.size(32.dp) // Increase the size of the icon
                 )
             },
-            label = { Text("Library") }
-        )
+            label = { Text("Library") },
+
+            )
 
         NavigationBarItem(
             selected = onFocusScreen == BookStreakScreens.Stats,
@@ -106,14 +112,16 @@ fun BottomBarButtons(
             icon = {
                 Icon(
                     painter = painterResource(R.drawable.bar_chart),
-                    contentDescription = "Stats"
+                    contentDescription = "Stats",
+                    modifier = Modifier.size(32.dp) // Increase the size of the icon
                 )
             },
-            label = { Text("Stats") }
+            label = { Text("Stats") },
         )
     }
 
 }
+
 
 @Preview(showBackground = true)
 @Composable

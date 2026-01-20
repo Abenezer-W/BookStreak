@@ -22,11 +22,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BookStreakTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BookStreakApp(
-                        modifier = Modifier.padding(innerPadding),
-                    )
-                }
+                BookStreakApp()
             }
         }
     }
