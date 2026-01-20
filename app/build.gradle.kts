@@ -70,7 +70,6 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
     implementation("com.google.firebase:firebase-auth")
-    implementation("com.firebaseui:firebase-ui-auth:9.0.0")
 
     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4")
